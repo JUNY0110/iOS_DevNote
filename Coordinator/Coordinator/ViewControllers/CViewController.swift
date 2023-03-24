@@ -32,6 +32,7 @@ class CViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .green
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"),
                                                            style: .plain,
                                                            target: self,

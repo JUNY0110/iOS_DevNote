@@ -31,7 +31,7 @@ class AViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = .cyan
         navigationItem.title = "A"
     }
 

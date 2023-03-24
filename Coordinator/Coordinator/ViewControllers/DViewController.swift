@@ -32,6 +32,7 @@ class DViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .purple
         navigationItem.title = "D"
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"),
                                                            style: .plain,
