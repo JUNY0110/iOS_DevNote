@@ -1,6 +1,6 @@
 //
 //  DViewController.swift
-//  CoordinatorTest
+//  Coordinator
 //
 //  Created by 지준용 on 2023/03/23.
 //
@@ -28,8 +28,8 @@ class DViewController: BaseViewController {
         return $0
     }(UIButton(configuration: .filled()))
     
-    // MARK: - LifeCycle
-
+    // MARK: - Method
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "D"
@@ -39,16 +39,12 @@ class DViewController: BaseViewController {
                                                            action: #selector(didTapBackButton))
     }
     
-    // MARK: - Method
-    
     override func layout() {
         view.addSubview(endingButton)
         endingButton.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
     }
-    
-    // MARK: - Button
 
     @objc func didTapBackButton() {
         delegate?.popToCViewController()

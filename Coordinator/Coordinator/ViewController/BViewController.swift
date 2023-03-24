@@ -1,6 +1,6 @@
 //
 //  ZeroViewController.swift
-//  CoordinatorTest
+//  Coordinator
 //
 //  Created by 지준용 on 2023/03/23.
 //
@@ -28,7 +28,7 @@ class BViewController: BaseViewController {
         return $0
     }(UIButton(configuration: .filled()))
 
-    // MARK: - LifeCycle
+    // MARK: - Method
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,17 +36,13 @@ class BViewController: BaseViewController {
         navigationItem.title = "B"
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(didTapBackButton))
     }
-
-    // MARK: - Method
-
+    
     override func layout() {
         view.addSubview(coordinatorButton)
         coordinatorButton.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
     }
-    
-    // MARK: - Button
     
     @objc func didTapPresentButton() {
         delegate?.presentCViewController()

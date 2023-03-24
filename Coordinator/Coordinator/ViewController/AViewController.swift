@@ -1,6 +1,6 @@
 //
-//  CViewController.swift
-//  CoordinatorTest
+//  AViewController.swift
+//  Coordinator
 //
 //  Created by 지준용 on 2023/03/23.
 //
@@ -8,16 +8,15 @@
 import UIKit
 import SnapKit
 
-protocol CViewControllerDelegate {
-    func pushToDViewController()
-    func dismissViewController()
+protocol AViewControllerDelegate {
+    func pushToBViewController()
 }
 
-class CViewController: BaseViewController {
+class AViewController: BaseViewController {
     
     // MARK: - Property
     
-    var delegate: CViewControllerDelegate?
+    var delegate: AViewControllerDelegate?
     
     // MARK: - View
     
@@ -32,17 +31,13 @@ class CViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"),
-                                                           style: .plain,
-                                                           target: self,
-                                                           action: #selector(didTapCloseButton))
+
+        navigationItem.title = "A"
     }
-    
+
     // MARK: - Method
     
     override func layout() {
-        navigationItem.title = "C"
-        
         view.addSubview(coordinatorButton)
         coordinatorButton.snp.makeConstraints {
             $0.center.equalToSuperview()
@@ -50,13 +45,8 @@ class CViewController: BaseViewController {
     }
     
     // MARK: - Button
-
+    
     @objc func didTapPushButton() {
-        delegate?.pushToDViewController()
-    }
-    
-    
-    @objc func didTapCloseButton() {
-        delegate?.dismissViewController()
+        delegate?.pushToBViewController()
     }
 }

@@ -1,6 +1,6 @@
 //
 //  ACoordinator.swift
-//  CoordinatorTest
+//  Coordinator
 //
 //  Created by 지준용 on 2023/03/23.
 //
@@ -24,7 +24,7 @@ class ACoordinator: BaseCoordinator, AViewControllerDelegate   {
         navigationController.viewControllers = [aVC]
     }
     
-    // MARK: - Push
+    // MARK: - Method
     
     func pushToBViewController() {
         delegate?.pushToBViewController()

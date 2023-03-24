@@ -1,6 +1,6 @@
 //
 //  BCoordinator.swift
-//  CoordinatorTest
+//  Coordinator
 //
 //  Created by 지준용 on 2023/03/23.
 //
@@ -25,13 +25,11 @@ class BCoordinator: BaseCoordinator, BViewControllerDelegate   {
         navigationController.pushViewController(bVC, animated: true)
     }
     
-    // MARK: - Present
+    // MARK: - Method
     
     func presentCViewController() {
         delegate?.presentCViewController()
     }
-
-    // MARK: - Pop
     
     func popToAViewController() {
         delegate?.popViewController()
