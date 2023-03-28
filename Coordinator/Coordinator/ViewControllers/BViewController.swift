@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-protocol BViewControllerDelegate {
+protocol BViewControllerDelegate: AnyObject {
     func presentCViewController()
     func popToAViewController()
 }
@@ -17,7 +17,7 @@ class BViewController: BaseViewController {
     
     // MARK: - Property
     
-    var delegate: BViewControllerDelegate?
+    weak var delegate: BViewControllerDelegate?
     
     // MARK: - View
     

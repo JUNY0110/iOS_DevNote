@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-protocol DViewControllerDelegate {
+protocol DViewControllerDelegate: AnyObject {
     func popToCViewController()
     func dismissViewController()
 }
@@ -17,7 +17,7 @@ class DViewController: BaseViewController {
     
     // MARK: - Property
     
-    var delegate: DViewControllerDelegate?
+    weak var delegate: DViewControllerDelegate?
     
     // MARK: - View
     

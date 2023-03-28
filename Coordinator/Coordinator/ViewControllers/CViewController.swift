@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-protocol CViewControllerDelegate {
+protocol CViewControllerDelegate: AnyObject {
     func pushToDViewController()
     func dismissViewController()
 }
@@ -17,7 +17,7 @@ class CViewController: BaseViewController {
     
     // MARK: - Property
     
-    var delegate: CViewControllerDelegate?
+    weak var delegate: CViewControllerDelegate?
     
     // MARK: - View
     

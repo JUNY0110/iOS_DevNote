@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-protocol AViewControllerDelegate {
+protocol AViewControllerDelegate: AnyObject {
     func pushToBViewController()
 }
 
@@ -16,9 +16,12 @@ class AViewController: BaseViewController {
     
     // MARK: - Property
     
-    var delegate: AViewControllerDelegate?
+    weak var delegate: AViewControllerDelegate?
     
     // MARK: - View
+    
+    /// - SeeAlso: dd
+    /// - Note:
     
     private let coordinatorButton: UIButton = {
         $0.configuration?.title = "Push"
