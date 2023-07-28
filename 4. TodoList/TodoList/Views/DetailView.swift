@@ -39,7 +39,7 @@ final class DetailView: UIView {
     
     // MARK: - View
     
-    var contentView: UIStackView = {
+    private var contentView: UIStackView = {
         $0.axis = .vertical
         $0.distribution = .fillProportionally
         $0.spacing = .sixteen
@@ -47,7 +47,7 @@ final class DetailView: UIView {
         return $0
     }(UIStackView())
     
-    var colorCategory = BaseHStackView()
+    private var colorCategory = BaseHStackView()
     private var redButton = UIButton(configuration: .filled())
     private var greenButton = UIButton(configuration: .filled())
     private var blueButton = UIButton(configuration: .filled())
@@ -67,7 +67,7 @@ final class DetailView: UIView {
         return $0
     }(UITextView())
 
-    var dateStack = BaseHStackView()
+    private var dateStack = BaseHStackView()
     var dateLabel: UILabel = {
         $0.text = "🕓 " + Date().convertToString()
         $0.font = .mediumSize
@@ -108,8 +108,6 @@ final class DetailView: UIView {
         addKeyboardObserver()
         
         colorCategory.spacing = .eight
-//        contentView.frame = contentView.frame.inset(by: <#T##UIEdgeInsets#>)
-//        self.frame = self.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0))
     }
     
     @available(*, unavailable)

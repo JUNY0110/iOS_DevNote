@@ -9,7 +9,6 @@ import UIKit
 
 protocol TodoTableViewCellDelegate: AnyObject {
     func moveToRenewalViewController(_ sender: TodoTableViewCell)
-    func presentAlert(_ sender: TodoTableViewCell)
 }
 
 final class TodoTableViewCell: UITableViewCell {
@@ -58,7 +57,7 @@ final class TodoTableViewCell: UITableViewCell {
     
     // MARK: - SetupCell
 
-    func setupCell() {
+    private func setupCell() {
         contentView.addSubview(colorView)
         colorView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: .sixteen).isActive = true
         colorView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -(.sixteen)).isActive = true
@@ -80,11 +79,9 @@ final class TodoTableViewCell: UITableViewCell {
     
     // MARK: - Attribute
     
-    func attribute() {
+    private func attribute() {
         self.selectionStyle = .none
         self.backgroundColor = .systemGray6
-        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(presentAlert))
-        self.addGestureRecognizer(longPressGesture)
         
         hStackView.renewalButton.addTarget(self, action: #selector(moveToRenewalViewController), for: .touchUpInside)
     }
@@ -111,9 +108,5 @@ final class TodoTableViewCell: UITableViewCell {
 
     @objc func moveToRenewalViewController() {
         delegate?.moveToRenewalViewController(self)
-    }
-    
-    @objc func presentAlert() {
-        delegate?.presentAlert(self)
     }
 }

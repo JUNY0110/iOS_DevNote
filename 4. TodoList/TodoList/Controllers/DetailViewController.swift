@@ -11,7 +11,7 @@ final class DetailViewController: BaseViewController {
     
     // MARK: - Property
     
-    let todoManager = CoreDataManager.shared
+    private let todoManager = CoreDataManager.shared
     var isUpdating = false
     
     // MARK: - View
@@ -44,7 +44,7 @@ final class DetailViewController: BaseViewController {
     
     // MARK: - Method
     
-    func isCheckDuplication(_ sender: DetailView) -> Bool {
+    private func isCheckDuplication(_ sender: DetailView) -> Bool {
         let isCheckDuplication = todoManager.fetchTodoDataFromCoreData().allSatisfy { data in
             if data.memo == sender.textView.text &&
                data.endDate == (sender.dateLabel.text?.convertToDate())! {
@@ -55,7 +55,7 @@ final class DetailViewController: BaseViewController {
         return isCheckDuplication
     }
     
-    func duplicationAlert() {
+    private func duplicationAlert() {
         let alert = UIAlertController(title: "알림",
                                       message: """
                                                 같은 날 동일하게 작성된 일정이 있습니다.

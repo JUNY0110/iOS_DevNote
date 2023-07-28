@@ -26,7 +26,6 @@ class BaseTableView: UITableView {
     // MARK: - Attribute
     
     private func attribute() {
-//        self.register(TodoTableViewCell.self, forCellReuseIdentifier: TodoTableViewCell.identifier)
         self.backgroundColor = .systemGray6
         self.separatorStyle = .none
         self.delaysContentTouches = false

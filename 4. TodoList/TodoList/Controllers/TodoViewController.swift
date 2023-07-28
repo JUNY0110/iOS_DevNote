@@ -24,8 +24,8 @@ final class TodoViewController: BaseViewController {
     
     // MARK: - Property
     
-    var dataSource: UITableViewDiffableDataSource<MemoList, Datum>!
-    let todoManager = CoreDataManager.shared
+    private var dataSource: TableViewDataSource!
+    private let todoManager = CoreDataManager.shared
     
     // MARK: - View
     
@@ -37,7 +37,6 @@ final class TodoViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         setupDataSource()
-        configureTableView()
     }
     
     // MARK: - Layout
@@ -53,25 +52,15 @@ final class TodoViewController: BaseViewController {
         tableView.register(TodoTableViewCell.self,
                            forCellReuseIdentifier: TodoTableViewCell.identifier)
         setupDataSource()
-        configureTableView()
         configureRefreshControl()
         setupNavigationBar()
     }
     
-    func configureRefreshControl() {
+    private func configureRefreshControl() {
         tableView.refreshControl = UIRefreshControl()
         tableView.refreshControl?.addTarget(self,
                                             action: #selector(handleRefreshControl),
                                             for: .valueChanged)
-    }
-    
-    @objc func handleRefreshControl() {
-        setupDataSource()
-        configureTableView()
-        
-        DispatchQueue.main.async {
-            self.tableView.refreshControl?.endRefreshing()
-        }
     }
     
     private func setupNavigationBar() {
@@ -88,7 +77,7 @@ final class TodoViewController: BaseViewController {
     // MARK: - Setup DataSource
 
     private func setupDataSource() {
-        self.dataSource = UITableViewDiffableDataSource<MemoList, Datum>(tableView: self.tableView, cellProvider: { tableView, indexPath, data -> UITableViewCell? in
+        self.dataSource = TableViewDataSource(tableView: self.tableView, cellProvider: { tableView, indexPath, data -> UITableViewCell? in
 
             guard let color = ColorType(rawValue: Int(data.color)) else { preconditionFailure() }
             let cell = tableView.dequeueReusableCell(withIdentifier: TodoTableViewCell.identifier, for: indexPath) as! TodoTableViewCell
@@ -100,48 +89,30 @@ final class TodoViewController: BaseViewController {
                            color: color)
             return cell
         })
+        
         tableView.dataSource = dataSource
     }
-    
-    private func configureTableView() {
-        var snapshot = NSDiffableDataSourceSnapshot<MemoList, Datum>()
-        snapshot.appendSections([.memo])
 
-        let datum = todoManager.fetchTodoDataFromCoreData()
-
-        for data in datum {
-            snapshot.appendItems([Datum(memo: data.memo,
-                                        endDate: data.endDate,
-                                        color: data.colors,
-                                        isSuccess: data.isSuccess)])
-        }
-        dataSource.apply(snapshot)
-    }
-    
     // MARK: - Navigation Method
     
     @objc func moveToAdditionVC() {
         let detailVC = DetailViewController()
         navigationController?.pushViewController(detailVC, animated: true)
     }
+    
+    // MARK: - Refresh Control
+    
+    @objc func handleRefreshControl() {
+        setupDataSource()
+        
+        DispatchQueue.main.async {
+            self.tableView.refreshControl?.endRefreshing()
+        }
+    }
 }
 
-
 extension TodoViewController: TodoTableViewCellDelegate {
-    func presentAlert(_ sender: TodoTableViewCell) {
-        let sheet = UIAlertController(title: "달성하셨습니까?", message: nil,
-                                      preferredStyle: .actionSheet)
-        let successAction = UIAlertAction(title: "예", style: .destructive) { action in
-            self.deleteData(self.fetchData(from: sender))
-        }
-        let cancel = UIAlertAction(title: "아니오", style: .cancel)
-
-        sheet.addAction(successAction)
-        sheet.addAction(cancel)
-        present(sheet, animated: true)
-    }
-    
-    func fetchData(from sender: TodoTableViewCell) -> Datum {
+    private func fetchData(from sender: TodoTableViewCell) -> Datum {
         let color = sender.colorView.backgroundColor ?? .lightGray
         let colorNumber = ColorType.findColor(color)
         let data = Datum(memo: sender.memoLabel.text!,
@@ -149,18 +120,6 @@ extension TodoViewController: TodoTableViewCellDelegate {
                          color: colorNumber,
                          isSuccess: false)
         return data
-    }
-    
-    func deleteData(_ data: Datum) {
-        var snapshot = dataSource.snapshot()
-        snapshot.deleteItems([data])
-
-        if let index = dataSource.indexPath(for: data) {
-            let todoData = todoManager.fetchTodoDataFromCoreData()[index.row]
-            todoManager.deleteTodo(data: todoData) {
-                self.dataSource.apply(snapshot)
-            }
-        }
     }
 
     func moveToRenewalViewController(_ sender: TodoTableViewCell) {
@@ -173,5 +132,48 @@ extension TodoViewController: TodoTableViewCellDelegate {
             detailVC.isUpdating = true
         }
         navigationController?.pushViewController(detailVC, animated: true)
+    }
+}
+
+final class TableViewDataSource: UITableViewDiffableDataSource<MemoList, Datum> {
+    private let todoManager = CoreDataManager.shared
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if let cellItem = itemIdentifier(for: indexPath) {
+            self.deleteCell(cellItem)
+        }
+    }
+    
+    override init(tableView: UITableView, cellProvider: @escaping UITableViewDiffableDataSource<MemoList, Datum>.CellProvider) {
+        super.init(tableView: tableView, cellProvider: cellProvider)
+        
+        configureCell()
+    }
+    
+    private func configureCell() {
+        var snapshot = NSDiffableDataSourceSnapshot<MemoList, Datum>()
+        snapshot.appendSections([.memo])
+
+        let datum = todoManager.fetchTodoDataFromCoreData()
+
+        for data in datum {
+            snapshot.appendItems([Datum(memo: data.memo, endDate: data.endDate,
+                                        color: data.colors, isSuccess: data.isSuccess)])
+        }
+        
+        self.apply(snapshot)
+    }
+
+    private func deleteCell(_ data: Datum) {
+        var snapshot = snapshot()
+
+        if let index = indexPath(for: data) {
+            let todoData = todoManager.fetchTodoDataFromCoreData()[index.row]
+            todoManager.deleteTodo(data: todoData) {
+                snapshot.deleteItems([data])
+            }
+        }
+        self.apply(snapshot)
     }
 }
