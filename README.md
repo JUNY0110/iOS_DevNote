@@ -21,7 +21,7 @@ UIKit과 관련된 공부내용을 올리는 정리노트입니다.
 |**활용 구조**|<img width="340" alt="Screenshot 2023-05-26 at 6 40 40 PM" src="https://github.com/JUNY0110/iOS_UIKit_DevNote/assets/98405970/1e7cb606-fd30-4368-9a67-63a80288faed"> <img width="340" alt="Screenshot 2023-05-26 at 6 40 21 PM" src="https://github.com/JUNY0110/iOS_UIKit_DevNote/assets/98405970/ec34b5d9-48f9-4a61-b1a0-3577f4aaba70">|
 
 ### 4. Todolist
-|학습 목적|[CoreData CRUD와 UITableViewDiffableDataSource 구현|
+|학습 목적|CoreData CRUD와 UITableViewDiffableDataSource 구현 및 MVC 패턴 적용|
 |:-:|:-|
 |**내용 정리**|[UITableViewDiffableDataSource (공식문서 정리)](https://www.notion.so/joonyong/UITableViewDiffableDataSource-9b082193973b4631b211b51d9f77260f)|
 ||[DiffableTableView 기본 코드 및 사용하면서 느낀 점](https://www.notion.so/joonyong/DiffableTableView-e5ada3679c494bd89fc47c0a9cce2908)|
