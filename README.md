@@ -34,3 +34,15 @@ UIKit과 관련된 공부내용을 올리는 정리노트입니다.
 ||[[문제해결] TableViewCell 내부 UIButton을 통해 다른 ViewController에 데이터 전달하기](https://www.notion.so/joonyong/192003377e874df2af7386f1ad55fe86?p=9f7cf00822ff47afaf04f4d3b780fc03&pm=s)|
 ||[[문제해결] Locale.current를 해도 요일이 영어로 나오는 문제](https://www.notion.so/joonyong/192003377e874df2af7386f1ad55fe86?p=45e2bd2f46f8480da8b845e9fbe86d4d&pm=s)|
 ||[[문제해결] String → Date 변환 시 한국시간 -9시간으로 표시되는 이유](https://www.notion.so/joonyong/192003377e874df2af7386f1ad55fe86?p=0b6307ee57ec47068dab013002e375f8&pm=s)|
+
+
+### 5. Codable
+|학습 목적|Codable에 대한 이해|
+|:-:|:-|
+|**내용정리**|[[Swift] Codable](https://www.notion.so/joonyong/192003377e874df2af7386f1ad55fe86?p=12f5fc810b7e49198bbdf31873e94506&pm=s)|
+
+
+### 6. MusicApp
+|블로그 정리|Networking에 대한 이해 및 Skeleton Library 적용|
+|:-:|:-|
+|**내용정리**|[SkeletonView](https://www.notion.so/joonyong/192003377e874df2af7386f1ad55fe86?p=5740fac89b6f4dfb8b97673eafb234eb&pm=s)|
