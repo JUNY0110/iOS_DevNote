@@ -43,6 +43,11 @@ UIKit과 관련된 공부내용을 올리는 정리노트입니다.
 
 
 ### 6. MusicApp
-|블로그 정리|Networking에 대한 이해 및 Skeleton Library 적용|
+|학습 목적|Networking에 대한 이해 및 Skeleton Library 적용|
 |:-:|:-|
 |**내용정리**|[SkeletonView](https://www.notion.so/joonyong/192003377e874df2af7386f1ad55fe86?p=5740fac89b6f4dfb8b97673eafb234eb&pm=s)|
+
+### 7. Lottie
+|학습 목적|Lottie Library 적용|
+|:-:|:-|
+|**내용정리**|[Lottie](https://www.notion.so/joonyong/192003377e874df2af7386f1ad55fe86?p=eb9e3091ece4442b9250d1853da11e8e&pm=s)|
