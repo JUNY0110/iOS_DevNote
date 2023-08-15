@@ -48,6 +48,6 @@ UIKit과 관련된 공부내용을 올리는 정리노트입니다.
 |**내용정리**|[SkeletonView](https://www.notion.so/joonyong/192003377e874df2af7386f1ad55fe86?p=5740fac89b6f4dfb8b97673eafb234eb&pm=s)|
 
 ### 7. Lottie
-|학습 목적|Lottie Library 적용|
+|블로그 정리|[Lottie](https://www.notion.so/joonyong/192003377e874df2af7386f1ad55fe86?p=eb9e3091ece4442b9250d1853da11e8e&pm=s)|
 |:-:|:-|
-|**내용정리**|[Lottie](https://www.notion.so/joonyong/192003377e874df2af7386f1ad55fe86?p=eb9e3091ece4442b9250d1853da11e8e&pm=s)|
+|**화면**|![Simulator Screen Recording - iPhone 14 Pro - 2023-08-16 at 00 15 28](https://github.com/JUNY0110/iOS_UIKit_DevNote/assets/98405970/9505f9fd-81a4-4e31-8af8-1a150553a0a4)|
